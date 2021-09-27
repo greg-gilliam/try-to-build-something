@@ -41,7 +41,7 @@ describe('insult routes', () => {
         expect(res.body).toEqual([
           {
             id: '1',
-            quote: 'something',
+            quotes: 'something',
           },
         ]);
       });
