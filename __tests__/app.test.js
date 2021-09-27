@@ -47,3 +47,15 @@ describe('insult routes', () => {
       });
   });
 });
+
+it('should GET an insult by id', () => {
+  return request(app)
+    .get('/api/v1/insult/1')
+    .then((res) => {
+      expect(res.body).toEqual({
+        id: '1',
+        quotes: 'something',
+      });
+    });
+});
+
