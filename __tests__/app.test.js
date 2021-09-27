@@ -33,4 +33,17 @@ describe('insult routes', () => {
         });
       });
   });
+
+  it('should GET all insults', () => {
+    return request(app)
+      .get('/api/v1/insults')
+      .then((res) => {
+        expect(res.body).toEqual([
+          {
+            id: '1',
+            quote: 'something',
+          },
+        ]);
+      });
+  });
 });
