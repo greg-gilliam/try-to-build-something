@@ -94,14 +94,14 @@ describe('favorites routes', () => {
     });
   });
 
-  it('should SAVE an insult', () => {
+  it.only('should SAVE an insult', () => {
     return request(app)
       .post('/api/v1/favorites')
-      .send({ username: 'joe', quotes: 'something' })
+      .send({ username: 'stacy', quotes: 'something' })
       .then((res) => {
         expect(res.body).toEqual({
           id: '2',
-          username: 'joe',
+          username: 'stacy',
           quotes: 'something',
         });
       });
