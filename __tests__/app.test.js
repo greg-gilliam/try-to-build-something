@@ -27,6 +27,7 @@ describe('insult routes', () => {
       .post('/api/v1/insults')
       .send({ quotes: 'something' })
       .then(res => {
+        console.log(res.body);
         expect(res.body).toEqual({
           id: '2',
           quotes: 'something',
