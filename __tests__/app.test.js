@@ -113,8 +113,8 @@ describe('favorites routes', () => {
       .then((res) => {
         expect(res.body).toEqual([
           {
-            id: '2',
-            username: 'stacy',
+            id: '1',
+            username: 'joe',
             quotes: 'something',
           },
         ]);
