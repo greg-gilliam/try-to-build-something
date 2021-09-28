@@ -94,7 +94,7 @@ describe('favorites routes', () => {
     });
   });
 
-  it.only('should SAVE an insult', () => {
+  it('should SAVE an insult', () => {
     return request(app)
       .post('/api/v1/favorites')
       .send({ username: 'stacy', quotes: 'something' })
@@ -104,6 +104,20 @@ describe('favorites routes', () => {
           username: 'stacy',
           quotes: 'something',
         });
+      });
+  });
+
+  it.only('should GET all favorites', () => {
+    return request(app)
+      .get('/api/v1/favorites')
+      .then((res) => {
+        expect(res.body).toEqual([
+          {
+            id: '2',
+            username: 'stacy',
+            quotes: 'something',
+          },
+        ]);
       });
   });
 });
