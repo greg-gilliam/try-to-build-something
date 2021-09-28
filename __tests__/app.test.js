@@ -74,3 +74,16 @@ it('should PATCH an insult by id & return updated insult', () => {
       );
     });
 });
+
+it('should DELETE an insult', () => {
+  return request(app)
+    .delete('/api/v1/insults/1')
+    .then(res => {
+      expect(res.body).toEqual(
+        {
+          id: '1',
+          quotes: 'something else',
+        }
+      );
+    });
+});
