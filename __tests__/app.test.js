@@ -26,7 +26,7 @@ describe('insult routes', () => {
     return request(app)
       .post('/api/v1/insults')
       .send({ quotes: 'something' })
-      .then(res => {
+      .then((res) => {
         expect(res.body).toEqual({
           id: '2',
           quotes: 'something',
@@ -46,44 +46,64 @@ describe('insult routes', () => {
         ]);
       });
   });
-});
 
-it('should GET an insult by id', () => {
-  return request(app)
-    .get('/api/v1/insults/1')
-    .then((res) => {
-      expect(res.body).toEqual(
-        {
+  it('should GET an insult by id', () => {
+    return request(app)
+      .get('/api/v1/insults/1')
+      .then((res) => {
+        expect(res.body).toEqual({
           id: '1',
           quotes: 'something',
-        },
-      );
-    });
-});
+        });
+      });
+  });
 
-it('should PATCH an insult by id & return updated insult', () => {
-  return request(app)
-    .patch('/api/v1/insults/1')
-    .send({ quotes: 'something else' })
-    .then((res) => {
-      expect(res.body).toEqual(
-        {
-          id: '1',
-          quotes: 'something else', 
-        }
-      );
-    });
-});
-
-it('should DELETE an insult', () => {
-  return request(app)
-    .delete('/api/v1/insults/1')
-    .then(res => {
-      expect(res.body).toEqual(
-        {
+  it('should PATCH an insult by id & return updated insult', () => {
+    return request(app)
+      .patch('/api/v1/insults/1')
+      .send({ quotes: 'something else' })
+      .then((res) => {
+        expect(res.body).toEqual({
           id: '1',
           quotes: 'something else',
-        }
-      );
+        });
+      });
+  });
+
+  it('should DELETE an insult', () => {
+    return request(app)
+      .delete('/api/v1/insults/1')
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '1',
+          quotes: 'something else',
+        });
+      });
+  });
+});
+
+describe('favorites routes', () => {
+  beforeEach(() => {
+    return setup(pool);
+  });
+
+  beforeEach(() => {
+    return request(app).post('/api/v1/favorites').send({
+      username: 'joe',
+      quotes: 'something',
     });
+  });
+
+  it('should SAVE an insult', () => {
+    return request(app)
+      .post('/api/v1/favorites')
+      .send({ username: 'joe', quotes: 'something' })
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '2',
+          username: 'joe',
+          quotes: 'something',
+        });
+      });
+  });
 });
