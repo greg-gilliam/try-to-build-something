@@ -61,16 +61,15 @@ it('should GET an insult by id', () => {
     });
 });
 
-it('should PATCH an insult by id & return updated insult', async() => {
-  await (await request(app).post('/api/v1/insults')).send({ quotes: 'something', });
+it('should PATCH an insult by id & return updated insult', () => {
   return request(app)
     .patch('/api/v1/insults/1')
-    .send({ quotes: 'something else', })
+    .send({ quotes: 'something else' })
     .then((res) => {
       expect(res.body).toEqual(
         {
           id: '1',
-          quotes: 'something else',
+          quotes: 'something else', 
         }
       );
     });
