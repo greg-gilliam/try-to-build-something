@@ -121,7 +121,7 @@ describe('favorites routes', () => {
       });
   });
 
-  it.only('should GET a favorite by id', () => {
+  it('should GET a favorite by id', () => {
     return request(app)
       .get('/api/v1/favorites/1')
       .then((res) => {
@@ -129,6 +129,19 @@ describe('favorites routes', () => {
           id: '1',
           username: 'joe',
           quotes: 'something',
+        });
+      });
+  });
+
+  it.only('should PATCH a favorite by id & return updated favorite', () => {
+    return request(app)
+      .patch('/api/v1/favorites/1')
+      .send({ username: 'joe', quotes: 'something else' })
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '1',
+          username: 'joe',
+          quotes: 'something else',
         });
       });
   });
