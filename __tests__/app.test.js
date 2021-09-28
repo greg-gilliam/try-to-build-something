@@ -107,7 +107,7 @@ describe('favorites routes', () => {
       });
   });
 
-  it.only('should GET all favorites', () => {
+  it('should GET all favorites', () => {
     return request(app)
       .get('/api/v1/favorites')
       .then((res) => {
@@ -118,6 +118,18 @@ describe('favorites routes', () => {
             quotes: 'something',
           },
         ]);
+      });
+  });
+
+  it.only('should GET a favorite by id', () => {
+    return request(app)
+      .get('/api/v1/favorites/1')
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '1',
+          username: 'joe',
+          quotes: 'something',
+        });
       });
   });
 });
