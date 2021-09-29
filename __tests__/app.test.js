@@ -248,7 +248,7 @@ describe('drinks routes', () => {
     });
   });
 
-  it.only('should SAVE a snack', () => {
+  it('should SAVE a snack', () => {
     return request(app)
       .post('/api/v1/snacks')
       .send({ snackname: 'meat', snacktime: 'remember the cheese' })
@@ -258,6 +258,20 @@ describe('drinks routes', () => {
           snackname: 'meat',
           snacktime: 'remember the cheese',
         });
+      });
+  });
+
+  it.only('should GET all snacks', () => {
+    return request(app)
+      .get('/api/v1/snacks')
+      .then((res) => {
+        expect(res.body).toEqual([
+          {
+            id: '1',
+            snackname: 'cheese',
+            snacktime: 'yes, please',
+          },
+        ]);
       });
   });
 });
