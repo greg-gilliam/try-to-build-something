@@ -236,7 +236,7 @@ describe('drinks routes', () => {
   });
 });
 
-describe('drinks routes', () => {
+describe('snacks routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
@@ -300,7 +300,7 @@ describe('drinks routes', () => {
       });
   });
 
-  it.only('should DELETE a snack', () => {
+  it('should DELETE a snack', () => {
     return request(app)
       .delete('/api/v1/snacks/1')
       .then((res) => {
@@ -308,6 +308,32 @@ describe('drinks routes', () => {
           id: '1',
           snackname: 'cheese',
           snacktime: 'yes please',
+        });
+      });
+  });
+});
+
+describe('pets routes', () => {
+  beforeEach(() => {
+    return setup(pool);
+  });
+
+  beforeEach(() => {
+    return request(app).post('/api/v1/pets').send({
+      petname: 'mabel',
+      nickname: 'mabeley dee',
+    });
+  });
+
+  it.only('should SAVE a pet', () => {
+    return request(app)
+      .post('/api/v1/pets')
+      .send({ petname: 'mabel', nickname: 'mabeley dee' })
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '2',
+          petname: 'zelda',
+          nickname: 'z',
         });
       });
   });
