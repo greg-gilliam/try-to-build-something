@@ -210,7 +210,7 @@ describe('drinks routes', () => {
       });
   });
 
-  it.only('should PATCH a drink by id & return updated drink', () => {
+  it('should PATCH a drink by id & return updated drink', () => {
     return request(app)
       .patch('/api/v1/drinks/1')
       .send({ drinkname: 'rye on the rocks', drinktime: 'breakfast' })
