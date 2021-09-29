@@ -198,9 +198,22 @@ describe('drinks routes', () => {
       });
   });
 
-  it.only('should GET a drink by id', () => {
+  it('should GET a drink by id', () => {
     return request(app)
       .get('/api/v1/drinks/1')
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '1',
+          drinkname: 'rye on the rocks',
+          drinktime: 'breakfast',
+        });
+      });
+  });
+
+  it.only('should PATCH a drink by id & return updated drink', () => {
+    return request(app)
+      .patch('/api/v1/drinks/1')
+      .send({ drinkname: 'rye on the rocks', drinktime: 'breakfast' })
       .then((res) => {
         expect(res.body).toEqual({
           id: '1',
