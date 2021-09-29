@@ -325,7 +325,7 @@ describe('pets routes', () => {
     });
   });
 
-  it.only('should SAVE a pet', () => {
+  it('should SAVE a pet', () => {
     return request(app)
       .post('/api/v1/pets')
       .send({ petname: 'mabel', nickname: 'mabeley dee' })
@@ -335,6 +335,20 @@ describe('pets routes', () => {
           petname: 'mabel',
           nickname: 'mabeley dee',
         });
+      });
+  });
+
+  it.only('should GET all pets', () => {
+    return request(app)
+      .get('/api/v1/pets')
+      .then((res) => {
+        expect(res.body).toEqual([
+          {
+            id: '1',
+            petname: 'mabel',
+            nickname: 'mabeley dee',
+          },
+        ]);
       });
   });
 });
