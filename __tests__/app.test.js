@@ -306,8 +306,8 @@ describe('drinks routes', () => {
       .then((res) => {
         expect(res.body).toEqual({
           id: '1',
-          drinkname: 'cheese',
-          drinktime: 'yes please',
+          snackname: 'cheese',
+          snacktime: 'yes please',
         });
       });
   });
