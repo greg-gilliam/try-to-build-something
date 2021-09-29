@@ -197,4 +197,16 @@ describe('drinks routes', () => {
         ]);
       });
   });
+
+  it.only('should GET a drink by id', () => {
+    return request(app)
+      .get('/api/v1/drinks/1')
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '1',
+          drinkname: 'rye on the rocks',
+          drinktime: 'breakfast',
+        });
+      });
+  });
 });
