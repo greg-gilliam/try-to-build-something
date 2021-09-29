@@ -244,7 +244,7 @@ describe('drinks routes', () => {
   beforeEach(() => {
     return request(app).post('/api/v1/snacks').send({
       snackname: 'cheese',
-      snacktime: 'yes, please',
+      snacktime: 'yes please',
     });
   });
 
@@ -269,7 +269,7 @@ describe('drinks routes', () => {
           {
             id: '1',
             snackname: 'cheese',
-            snacktime: 'yes, please',
+            snacktime: 'yes please',
           },
         ]);
       });
@@ -282,7 +282,7 @@ describe('drinks routes', () => {
         expect(res.body).toEqual({
           id: '1',
           snackname: 'cheese',
-          snacktime: 'yes, please',
+          snacktime: 'yes please',
         });
       });
   });
@@ -295,7 +295,7 @@ describe('drinks routes', () => {
         expect(res.body).toEqual({
           id: '1',
           snackname: 'cheese',
-          snacktime: 'yes, please',
+          snacktime: 'yes please',
         });
       });
   });
