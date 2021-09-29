@@ -251,7 +251,7 @@ describe('drinks routes', () => {
   it.only('should SAVE a snack', () => {
     return request(app)
       .post('/api/v1/snacks')
-      .send({ snackname: 'cheese', snacktime: 'yes, please' })
+      .send({ snackname: 'meat', snacktime: 'remember the cheese' })
       .then((res) => {
         expect(res.body).toEqual({
           id: '2',
