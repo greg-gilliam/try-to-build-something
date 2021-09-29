@@ -332,8 +332,8 @@ describe('pets routes', () => {
       .then((res) => {
         expect(res.body).toEqual({
           id: '2',
-          petname: 'zelda',
-          nickname: 'z',
+          petname: 'mabel',
+          nickname: 'mabeley dee',
         });
       });
   });
