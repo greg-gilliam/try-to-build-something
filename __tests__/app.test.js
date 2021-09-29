@@ -287,7 +287,7 @@ describe('drinks routes', () => {
       });
   });
 
-  it.only('should PATCH a snack by id & return updated snack', () => {
+  it('should PATCH a snack by id & return updated snack', () => {
     return request(app)
       .patch('/api/v1/snacks/1')
       .send({ snackname: 'cheese', snacktime: 'yes, please' })
@@ -296,6 +296,18 @@ describe('drinks routes', () => {
           id: '1',
           snackname: 'cheese',
           snacktime: 'yes please',
+        });
+      });
+  });
+
+  it.only('should DELETE a snack', () => {
+    return request(app)
+      .delete('/api/v1/snacks/1')
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '1',
+          drinkname: 'cheese',
+          drinktime: 'yes please',
         });
       });
   });
