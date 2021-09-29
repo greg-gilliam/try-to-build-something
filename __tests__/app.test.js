@@ -223,7 +223,7 @@ describe('drinks routes', () => {
       });
   });
 
-  it.only('should DELETE a drink', () => {
+  it('should DELETE a drink', () => {
     return request(app)
       .delete('/api/v1/drinks/1')
       .then((res) => {
@@ -231,6 +231,32 @@ describe('drinks routes', () => {
           id: '1',
           drinkname: 'rye on the rocks',
           drinktime: 'breakfast',
+        });
+      });
+  });
+});
+
+describe('drinks routes', () => {
+  beforeEach(() => {
+    return setup(pool);
+  });
+
+  beforeEach(() => {
+    return request(app).post('/api/v1/snacks').send({
+      snackname: 'cheese',
+      snacktime: 'yes, please',
+    });
+  });
+
+  it.only('should SAVE a snack', () => {
+    return request(app)
+      .post('/api/v1/snacks')
+      .send({ snackname: 'cheese', snacktime: 'yes, please' })
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '2',
+          snackname: 'meat',
+          snacktime: 'remember the cheese',
         });
       });
   });
