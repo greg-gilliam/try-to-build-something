@@ -261,7 +261,7 @@ describe('drinks routes', () => {
       });
   });
 
-  it.only('should GET all snacks', () => {
+  it('should GET all snacks', () => {
     return request(app)
       .get('/api/v1/snacks')
       .then((res) => {
@@ -272,6 +272,18 @@ describe('drinks routes', () => {
             snacktime: 'yes, please',
           },
         ]);
+      });
+  });
+
+  it.only('should GET a snack by id', () => {
+    return request(app)
+      .get('/api/v1/snacks/1')
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '1',
+          snackname: 'cheese',
+          snacktime: 'yes, please',
+        });
       });
   });
 });
