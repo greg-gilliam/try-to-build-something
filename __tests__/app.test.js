@@ -76,7 +76,7 @@ describe('insult routes', () => {
       .then((res) => {
         expect(res.body).toEqual({
           id: '1',
-          quotes: 'something else',
+          quotes: 'something',
         });
       });
   });
@@ -146,14 +146,40 @@ describe('favorites routes', () => {
       });
   });
 
-  it.only('should DELETE a favorite', () => {
+  it('should DELETE a favorite', () => {
     return request(app)
       .delete('/api/v1/favorites/1')
       .then((res) => {
         expect(res.body).toEqual({
           id: '1',
           username: 'joe',
-          quotes: 'something else',
+          quotes: 'something',
+        });
+      });
+  });
+});
+
+describe('drinks routes', () => {
+  beforeEach(() => {
+    return setup(pool);
+  });
+
+  beforeEach(() => {
+    return request(app).post('/api/v1/drinks').send({
+      drinkname: 'rye on the rocks',
+      drinktime: 'breakfast',
+    });
+  });
+
+  it('should SAVE a drink', () => {
+    return request(app)
+      .post('/api/v1/drinks')
+      .send({ drinkname: 'beer', drinktime: 'snacktime' })
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '2',
+          drinkname: 'beer',
+          drinktime: 'snacktime',
         });
       });
   });
