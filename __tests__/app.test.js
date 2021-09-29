@@ -275,9 +275,22 @@ describe('drinks routes', () => {
       });
   });
 
-  it.only('should GET a snack by id', () => {
+  it('should GET a snack by id', () => {
     return request(app)
       .get('/api/v1/snacks/1')
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '1',
+          snackname: 'cheese',
+          snacktime: 'yes, please',
+        });
+      });
+  });
+
+  it.only('should PATCH a snack by id & return updated snack', () => {
+    return request(app)
+      .patch('/api/v1/snacks/1')
+      .send({ snackname: 'cheese', snacktime: 'yes, please' })
       .then((res) => {
         expect(res.body).toEqual({
           id: '1',
