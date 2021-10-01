@@ -338,7 +338,7 @@ describe('pets routes', () => {
       });
   });
 
-  it.only('should GET all pets', () => {
+  it('should GET all pets', () => {
     return request(app)
       .get('/api/v1/pets')
       .then((res) => {
@@ -349,6 +349,18 @@ describe('pets routes', () => {
             nickname: 'mabeley dee',
           },
         ]);
+      });
+  });
+
+  it.only('should GET a pet by id', () => {
+    return request(app)
+      .get('/api/v1/pets/1')
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '1',
+          petname: 'mabel',
+          nickname: 'mabeley dee',
+        });
       });
   });
 });
