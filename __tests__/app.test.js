@@ -352,9 +352,22 @@ describe('pets routes', () => {
       });
   });
 
-  it.only('should GET a pet by id', () => {
+  it('should GET a pet by id', () => {
     return request(app)
       .get('/api/v1/pets/1')
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '1',
+          petname: 'mabel',
+          nickname: 'mabeley dee',
+        });
+      });
+  });
+
+  it.only('should PATCH a pet by id & return updated pet', () => {
+    return request(app)
+      .patch('/api/v1/pets/1')
+      .send({ petname: 'mabel', nickname: 'mabeley dee' })
       .then((res) => {
         expect(res.body).toEqual({
           id: '1',
