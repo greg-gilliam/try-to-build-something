@@ -377,7 +377,7 @@ describe('pets routes', () => {
       });
   });
 
-  it.only('should DELETE a pet', () => {
+  it('should DELETE a pet', () => {
     return request(app)
       .delete('/api/v1/pets/1')
       .then((res) => {
