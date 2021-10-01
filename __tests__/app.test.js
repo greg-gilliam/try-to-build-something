@@ -364,10 +364,22 @@ describe('pets routes', () => {
       });
   });
 
-  it.only('should PATCH a pet by id & return updated pet', () => {
+  it('should PATCH a pet by id & return updated pet', () => {
     return request(app)
       .patch('/api/v1/pets/1')
       .send({ petname: 'mabel', nickname: 'mabeley dee' })
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '1',
+          petname: 'mabel',
+          nickname: 'mabeley dee',
+        });
+      });
+  });
+
+  it.only('should DELETE a pet', () => {
+    return request(app)
+      .delete('/api/v1/pets/1')
       .then((res) => {
         expect(res.body).toEqual({
           id: '1',
